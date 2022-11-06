@@ -34,7 +34,7 @@ module.exports = {
         allow: ['_d', '_dh', '_h', '_id', '_m', '_n', '_t', '_text'],
       },
     ],
-    'no-unused-vars': ['warn', {}],
+    // 'no-unused-vars': ['warn', {}],
     'comma-dangle': ['off'],
     'object-curly-newline': 0,
     'react/jsx-filename-extension': 0,
