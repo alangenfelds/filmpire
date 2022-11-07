@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { Actors, MovieInformation, Movies, Profile } from '.';
+import { Actors, MovieInformation, Profile } from '.';
 import Navbar from './Navbar/Navbar';
+import Movies from './Movies/Movies';
 import useStyles from './styles';
 
 function App() {

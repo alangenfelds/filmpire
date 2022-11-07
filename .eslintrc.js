@@ -36,6 +36,7 @@ module.exports = {
     ],
     // 'no-unused-vars': ['warn', {}],
     'comma-dangle': ['off'],
+    'operator-linebreak': ['off'],
     'object-curly-newline': 0,
     'react/jsx-filename-extension': 0,
     'react/jsx-one-expression-per-line': 0,
