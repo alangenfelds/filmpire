@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Typography, Button, Grid, CircularProgress } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { useHistory, useParams } from 'react-router-dom';
@@ -9,6 +9,8 @@ import {
   useGetMoviesByActorIdQuery,
 } from '../../services/TMDB';
 import MovieList from '../MovieList/MovieList';
+import Pagination from '../Pagination/Pagination';
+
 import useStyles from './styles';
 
 const Actors = () => {
@@ -16,7 +18,7 @@ const Actors = () => {
   const history = useHistory();
   const classes = useStyles();
 
-  const page = 1;
+  const [page, setPage] = useState(1);
 
   const { data, isFetching, error } = useGetActorDetailsQuery(id);
 
@@ -107,10 +109,17 @@ const Actors = () => {
           Movies
         </Typography>
         {movies?.results?.length > 0 ? (
-          <MovieList movies={movies} />
+          <>
+            <MovieList movies={movies} />
+          </>
         ) : (
           'Sorry, no movies found'
         )}
+        <Pagination
+          currentPage={page}
+          setPage={setPage}
+          totalPages={movies?.total_pages}
+        />
       </Box>
     </>
   );

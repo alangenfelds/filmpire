@@ -57,7 +57,7 @@ const MovieInformation = () => {
   const addToFavorites = () => {};
   const addToWatchlist = () => {};
 
-  if (isFetching) {
+  if (isFetching || isFetchingRecommendations) {
     return (
       <Box
         display="flex"
@@ -70,7 +70,7 @@ const MovieInformation = () => {
     );
   }
 
-  if (error) {
+  if (error || recommendationsError) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" mt="20px">
         <Link to="/" variant="h4">
@@ -185,7 +185,7 @@ const MovieInformation = () => {
         <Grid container item style={{ marginTop: '2rem' }}>
           <div className={classes.buttonsContainer}>
             <Grid item xs={12} sm={6} className={classes.buttonsContainer}>
-              <ButtonGroup size="small" variant="outlined">
+              <ButtonGroup size="medium" variant="outlined">
                 <Button
                   target="_blank"
                   rel="noopener noreferer"
@@ -202,14 +202,18 @@ const MovieInformation = () => {
                 >
                   IMDB
                 </Button>
-                <Button
-                  onClick={() => {
-                    setOpen(true);
-                  }}
-                  endIcon={<Theaters />}
-                >
-                  Trailer
-                </Button>
+                {movie?.videos?.results?.length ? (
+                  <Button
+                    onClick={() => {
+                      setOpen(true);
+                    }}
+                    endIcon={<Theaters />}
+                  >
+                    Trailer
+                  </Button>
+                ) : (
+                  <></>
+                )}
               </ButtonGroup>
             </Grid>
             <Grid item xs={12} sm={6} className={classes.buttonsContainer}>
@@ -257,13 +261,13 @@ const MovieInformation = () => {
           <Box>Sorry, nothing was found.</Box>
         )}
       </Box>
-      <Modal
-        closeAfterTransition
-        className={classes.modal}
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        {movie?.videos?.results?.length > 0 && (
+      {movie?.videos?.results?.length && (
+        <Modal
+          closeAfterTransition
+          className={classes.modal}
+          open={open}
+          onClose={() => setOpen(false)}
+        >
           <iframe
             autoPlay
             className={classes.video}
@@ -272,8 +276,8 @@ const MovieInformation = () => {
             src={`https://www.youtube.com/embed/${movie?.videos?.results[0].key}`}
             allow="autoplay"
           />
-        )}
-      </Modal>
+        </Modal>
+      )}
     </Grid>
   );
 };
