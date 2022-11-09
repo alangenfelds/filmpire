@@ -59,7 +59,6 @@ const categories = [
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
   const classes = useStyles();
-
   const { genreIdOrCategoryName } = useSelector(
     (state) => state.currentGenreOrCategory
   );
@@ -69,7 +68,9 @@ const Sidebar = ({ setMobileOpen }) => {
 
   // console.log('genreOrCategoryName', genreOrCategoryName);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [genreIdOrCategoryName]);
 
   return (
     <>
@@ -88,7 +89,6 @@ const Sidebar = ({ setMobileOpen }) => {
             <ListItem
               onClick={() => {
                 dispatch(selectGenreOrCategory(value));
-                setMobileOpen(false);
               }}
               button
             >
@@ -124,7 +124,6 @@ const Sidebar = ({ setMobileOpen }) => {
               <ListItem
                 onClick={() => {
                   dispatch(selectGenreOrCategory(id));
-                  setMobileOpen(false);
                 }}
                 button
               >
