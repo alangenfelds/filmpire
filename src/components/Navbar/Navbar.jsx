@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   AppBar,
   IconButton,
@@ -22,12 +22,14 @@ import { Sidebar, Search } from '../index';
 import { setUser, userSelector } from '../../features/auth';
 import useStyles from './styles';
 import { fetchToken, createSessionId, moviesApi } from '../../utils';
+import { ColorModeContext } from '../../utils/ToggleColorMode';
 
 const Navbar = () => {
   const theme = useTheme();
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)');
   const dispatch = useDispatch();
+  const colorMode = useContext(ColorModeContext);
 
   const { isAuthenticated, user } = useSelector(userSelector);
 
@@ -77,7 +79,9 @@ const Navbar = () => {
             sx={{
               ml: 1,
             }}
-            onClick={() => {}}
+            onClick={() => {
+              colorMode.toggleColorMode();
+            }}
           >
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>

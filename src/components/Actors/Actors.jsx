@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Box, Typography, Button, Grid, CircularProgress } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { useHistory, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import {
   useGetActorDetailsQuery,
