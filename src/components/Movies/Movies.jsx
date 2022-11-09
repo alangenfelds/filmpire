@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Box,
   CircularProgress,
-  // useMediaQuery,
+  useMediaQuery,
   Typography,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
@@ -13,6 +13,7 @@ import Pagination from '../Pagination/Pagination';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
+  const lg = useMediaQuery((theme) => theme.breakpoints.only('lg'));
 
   const { genreIdOrCategoryName, searchQuery } = useSelector(
     (state) => state.currentGenreOrCategory
@@ -59,7 +60,7 @@ const Movies = () => {
 
   return (
     <div>
-      <MovieList movies={data} />
+      <MovieList movies={data} numberOfMovies={lg ? 16 : 18} />
       <Pagination
         currentPage={page}
         setPage={setPage}

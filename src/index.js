@@ -9,6 +9,8 @@ import App from './components/App';
 import theme from './theme';
 import store from './app/store';
 
+import './index.css';
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

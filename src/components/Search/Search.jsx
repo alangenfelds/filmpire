@@ -9,6 +9,7 @@ import useStyles from './styles';
 
 const Search = () => {
   const classes = useStyles();
+  const location = useLocation();
 
   const [query, setQuery] = useState('');
 
@@ -18,13 +19,15 @@ const Search = () => {
 
   const dispatch = useDispatch();
 
-  // const path = useLocation();
-
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       dispatch(searchMovie(query));
     }
   };
+
+  if (location.pathname !== '/') {
+    return null;
+  }
 
   return (
     <div className={classes.searchContainer}>
