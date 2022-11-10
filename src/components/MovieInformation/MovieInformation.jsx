@@ -139,7 +139,7 @@ const MovieInformation = () => {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" mt="20px">
         <Link to="/" variant="h4">
-          Something has go wrong
+          Please Login first
         </Link>
       </Box>
     );
